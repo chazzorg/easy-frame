@@ -1,0 +1,27 @@
+{
+    "name": "swoole/easy-frame",
+    "description": "A PHP development framework (using swoole)",
+    "keywords": ["swoole","framework","performance"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chazz",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "vlucas/phpdotenv": "^4.0",
+        "symfony/console": "^5.0",
+        "php-amqplib/php-amqplib": "^2.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Chazz\\": "src/",
+            "App\\": "app/"
+        },
+        "files":[
+            "src/function.php"
+        ]
+    }
+}

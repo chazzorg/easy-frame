@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+global $argv;
+list(, $ip, $port) = array_pad($argv,3,'');
+if($ip && $port){
+    $client = new swoole_client(SWOOLE_SOCK_TCP);
+    if (!$client->connect($ip, 9502, -1))
+    {
+        exit("connect failed. Error: {$client->errCode}\n");
+    }
+    echo "欢迎使用TCP客户端\n";
+    fwrite(STDOUT, 'Enter the message you want to send, and you can enter the no to quit it '."\n");
+    while(true) {
+        fwrite(STDOUT, 'client: ');  
+        $info = fgets(STDIN);
+        if('no'."\n" === $info) {
+            break;
+        }
+        $client->send($info);
+        $recive = $client->recv();
+        echo 'server: '.$recive."\n";
+    }
+    $client->close();
+}
+exit("请输入完整的ip或端口号 php client 0.0.0.0 10000 \n");

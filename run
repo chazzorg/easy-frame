@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+// 定义应用目录
+define ('APP_PATH',__DIR__.'/app/');
+
+//定义框架目录
+define ('CORE_PATH',__DIR__.'/src/');
+
+//配置文件目录
+define ('CONFIG_PATH',__DIR__ .'/config/');
+
+//日志路径
+define('LOG_PATH',__DIR__ .'/logs/');
+
+//静态文件目录
+define('PUBLIC_PATH',__DIR__ .'/public/');
+
+//加载composer组件
+require __DIR__ ."/vendor/autoload.php";
+
+//加载启动文件
+require CORE_PATH ."run.php";
+
+//加载.env配置
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+//启动服务
+\Chazz\Start::run();
